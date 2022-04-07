@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     separator: {
         height: 10,
     },
+    
 });
 
 const repositories = [
@@ -59,7 +60,10 @@ const repositories = [
 
 
   const renderItem = ({item}) => (
-      <RepositoryItem item={item} />
+   
+   <RepositoryItem item={item} />
+
+   
   );
 
 
