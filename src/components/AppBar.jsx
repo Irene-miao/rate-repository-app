@@ -28,6 +28,7 @@ const AppBar = () => {
           <ScrollView horizontal={true}>
           <Link to="/"><Text style={styles.text}>Repositories</Text></Link>
               <Link to="/signin"><Text style={styles.text}>Sign In</Text></Link>
+              <Link to="/bodymass"><Text style={styles.text}>Check Body Mass</Text></Link>
           </ScrollView>
               
       </View>

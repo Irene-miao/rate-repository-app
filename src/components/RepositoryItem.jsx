@@ -96,8 +96,9 @@ const styles = StyleSheet.create({
   subheading: {
     fontSize: 14,
     color: "grey",
-    width: 300,
+    width: 280,
     paddingBottom: 5,
+    paddingTop: 5,
   },
   button: {
     padding: 5,
