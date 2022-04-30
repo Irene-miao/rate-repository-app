@@ -1,17 +1,22 @@
 import { Platform } from "react-native-web";
 
 const theme = {
+    roundness: 3,
     colors: {
         textPrimary: '#24292e',
         textSecondary: '#586069',
         primary: '#0366d6',
+        appBarBackground: '#24292e',
+        mainBackground: '#e1e4e8',
+        error: '#d73a4a',
+
     },
     fontSizes: {
         body: 14,
         subheading: 16,
     },
     fonts: {
-       family: Platform.select({
+       main: Platform.select({
            android: 'Roboto',
            ios: 'Arial',
            default: 'System',

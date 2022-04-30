@@ -59,12 +59,7 @@ const repositories = [
   ];
 
 
-  const renderItem = ({item}) => (
-   
-   <RepositoryItem item={item} />
 
-   
-  );
 
 
   const ItemSeparator = () => <View style={styles.separator} />;
@@ -74,7 +69,7 @@ const repositories = [
     return (
         <FlatList
         data={repositories}
-        renderItem={renderItem}
+        renderItem={({item}) => <RepositoryItem item={item} />}
         keyExtractor={(item) => item.id}
         ItemSeparatorComponent={ItemSeparator}
         />

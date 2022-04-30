@@ -1,15 +1,16 @@
 import React from "react";
-import { View, Text,  StyleSheet, ScrollView } from "react-native";
+import { View,  StyleSheet, ScrollView } from "react-native";
 import Constants from "expo-constants";
 import {Link} from 'react-router-native';
-
+import theme from '../theme';
+import Text from './Text';
 
 const styles = StyleSheet.create({
   container: {
       display:  "flex",
       flexDirection: "row",
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: "#24292e",
+    backgroundColor: theme.colors.appBarBackground,
     margin: 10,
     padding: 10,
   },

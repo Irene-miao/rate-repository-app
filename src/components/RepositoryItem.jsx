@@ -1,5 +1,8 @@
 import React from "react";
-import { Text, Image, TouchableOpacity, View, StyleSheet } from "react-native";
+import {  Image, TouchableOpacity, View, StyleSheet } from "react-native";
+import theme from '../theme';
+import Text from './Text';
+
 
 const RepositoryItem = ({ item }) => {
   return (
@@ -83,18 +86,18 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     margin: 10,
-    borderRadius: 5,
+    borderRadius: theme.roundness,
   },
   header: {
-    fontWeight: "bold",
-    fontSize: 20,
+    fontWeight: theme.fontWeights.bold,
+    fontSize: theme.fontSizes.subheading,
   },
   headerOne: {
-    fontWeight: "bold",
-    fontSize: 20,
+    fontWeight: theme.fontWeights.bold,
+    fontSize: theme.fontSizes.subheading,
   },
   subheading: {
-    fontSize: 14,
+    fontSize: theme.fontSizes.body,
     color: "grey",
     width: 280,
     paddingBottom: 5,
@@ -103,19 +106,19 @@ const styles = StyleSheet.create({
   button: {
     padding: 5,
     width: "50%",
-    borderRadius: 5,
+    borderRadius: theme.roundness,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#0366d6",
+    backgroundColor: theme.colors.primary,
   },
   btnText: {
     color: "white",
-    fontSize: 16,
+    fontSize: theme.fontSizes.body,
   },
   text: {
     color: "grey",
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: theme.fontSizes.subheading,
+    fontWeight: theme.fontWeights.bold,
   },
 });
 
