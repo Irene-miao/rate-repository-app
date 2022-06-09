@@ -39,7 +39,7 @@ data.repositories.edges.map(edge => edge.node)
         <FlatList
         data={repositoryNodes}
         renderItem={({item}) => <RepositoryItem item={item} />}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.fullName}
         ItemSeparatorComponent={ItemSeparator}
         />
     );
