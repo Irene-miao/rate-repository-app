@@ -5,6 +5,7 @@ import Text from './Text';
 
 
 const RepositoryItem = ({ item }) => {
+  console.log(item);
   return (
     <View style={styles.item}>
         <View style={styles.row}>
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 5,
-    width: "50%",
+    width: "25%",
     borderRadius: theme.roundness,
     justifyContent: "center",
     alignItems: "center",
