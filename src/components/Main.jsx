@@ -5,7 +5,7 @@ import RepositoryList from './RepositoryList';
 import AppBar from './AppBar';
 import { Route, Routes, Navigate} from 'react-router-native';
 import SignIn from './SignIn';
-import BodyMass from './BodyMass';
+import SignOut from './SignOut';
 import theme from '../theme';
 
 
@@ -32,7 +32,7 @@ const Main = () => {
             <Routes>
             <Route path="/" element={<RepositoryList />} exact />
             <Route path="signin" element={<SignIn />}  />
-            <Route path="bodymass" element={<BodyMass />}  />
+            <Route path="signout" element={<SignOut />}  />
             <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </View>

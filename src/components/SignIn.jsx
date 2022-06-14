@@ -5,6 +5,11 @@ import { Formik } from "formik";
 import FormikTextInput from "./FormikTextInput";
 import * as yup from "yup";
 import theme from "../theme";
+import useSignIn from './useSignIn';
+import { useNavigate} from 'react-router-dom';
+
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -63,12 +68,23 @@ const validationSchema = yup.object().shape({
     .string()
     .required("Password is required")
     .min(8, "Password must be at least 8 characters long")
-    .matches(/(?=.*[0-9])/, "Password must contain a number."),
+    //.matches(/(?=.*[0-9])/, "Password must contain a number."),
 });
 
 const SignIn = () => {
-  const onSubmit = (values) => {
-    console.log(values);
+  const [signIn] = useSignIn();
+ let navigate = useNavigate();
+
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+
+    try {
+      const {data } = await signIn({ username, password});
+     console.log(data);
+     data ? navigate("/", {replace:true}) : null;
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

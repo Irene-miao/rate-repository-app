@@ -19,3 +19,24 @@ query Query {
   }
   
 `
+
+export const GET_USERS = gql`
+query Query {
+  users {
+    edges {
+      node {
+        username
+      }
+    }
+  }
+}
+`
+
+export const GET_ME = gql`
+{
+  me {
+    id
+    username
+  }
+}
+`
