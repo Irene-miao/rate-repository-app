@@ -4,7 +4,6 @@ import Text from "./Text";
 import useAuthStorage from "../hooks/useAuthStorage";
 import { useApolloClient, useQuery } from "@apollo/client";
 import {GET_ME} from '../graphql/queries';
-import {useNavigate} from 'react-router-dom';
 import theme from '../theme';
 
 
@@ -24,7 +23,7 @@ const SignOut =  () => {
   const client = useApolloClient();
   const authStorage = useAuthStorage();
   const { data} = useQuery(GET_ME);
-   let navigate = useNavigate();
+  
 
 useEffect(async() => {
 await authStorage.removeAccessToken();
