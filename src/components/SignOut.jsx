@@ -7,6 +7,8 @@ import {GET_ME} from '../graphql/queries';
 import theme from '../theme';
 
 
+
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
@@ -23,11 +25,15 @@ const SignOut =  () => {
   const client = useApolloClient();
   const authStorage = useAuthStorage();
   const { data} = useQuery(GET_ME);
-  
+
+
+
+
 
 useEffect(async() => {
 await authStorage.removeAccessToken();
 client.resetStore();
+
 }, []);
     
 console.log(data);
