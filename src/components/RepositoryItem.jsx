@@ -8,9 +8,7 @@ const RepositoryItem = ({ item }) => {
   console.log(item);
 
   return (
-    
-    
-<View  testID="repositoryItem" style={styles.item}>
+  <View  testID="repositoryItem" style={styles.item}>
         <View style={styles.row}>
         <Image
         style={styles.img}

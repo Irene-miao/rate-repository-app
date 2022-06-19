@@ -40,3 +40,13 @@ query {
 
 ${USER_FIELDS}
 `;
+
+
+export const GET_REPOSITORY = gql`
+query Repository($repositoryId: ID!) {
+  repository(id: $repositoryId) {
+   ...repositoryFields
+  }
+}
+${REPOSITORY_FIELDS}
+`;
