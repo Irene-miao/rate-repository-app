@@ -82,8 +82,6 @@ const styles = StyleSheet.create({
     width: "50%",
     marginLeft: 5,
     padding: 5,
-
-   
   },
   img: {
     width: 50,

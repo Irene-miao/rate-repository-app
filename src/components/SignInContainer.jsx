@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
               onPress={onSubmit}
               style={({ pressed }) => [
                 {
-                  backgroundColor: pressed ? "white" : "#1E90FF",
+                  backgroundColor: pressed ? "#020202" : "#1E90FF",
                 },
                 styles.button,
               ]}
