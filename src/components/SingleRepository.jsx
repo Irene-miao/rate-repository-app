@@ -99,11 +99,9 @@ const RepositoryInfo = ({ repository }) => {
 };
 
 const ReviewItem = ({ review }) => {
-  console.log(review);
 const date = new Date(review.createdAt);
-console.log(date);
 const newDate = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`;
-console.log(newDate);
+
 
   return (
     <View style={styles.container}>
@@ -131,6 +129,7 @@ const SingleRepository = () => {
     variables: {
       repositoryId: id,
     },
+    fetchPolicy: 'cache-and-network',
   });
 
   if (loading) {

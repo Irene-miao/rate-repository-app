@@ -56,6 +56,8 @@ export const GET_REVIEWS = gql`
 query Query($repositoryId: ID!) {
   repository(id: $repositoryId) {
     ...repositoryFields
+    reviewCount
+    ratingAverage
     reviews {
       edges {
         node {

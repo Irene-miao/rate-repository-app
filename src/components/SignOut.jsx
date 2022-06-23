@@ -24,7 +24,9 @@ fontWeight: theme.fontWeights.normal,
 const SignOut =  () => {
   const client = useApolloClient();
   const authStorage = useAuthStorage();
-  const { data} = useQuery(GET_ME);
+  const { data} = useQuery(GET_ME, {
+    fetchPolicy: 'cache-and_network',
+  });
 
 
 

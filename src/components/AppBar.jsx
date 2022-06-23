@@ -27,7 +27,9 @@ const styles = StyleSheet.create({
 
 
 const AppBar = () => {
-  const {data} = useQuery(GET_ME);
+  const {data} = useQuery(GET_ME, {
+    fetchPolicy: 'cache-and-network',
+  });
 
 
 console.log(data);
@@ -38,8 +40,11 @@ return (
   <View style={styles.container}>
       <ScrollView horizontal={true}>
       <Link to="/"><Text style={styles.text}>Repositories</Text></Link>
-         { me === null  ? (<Link to="/signin"><Text style={styles.text}>Sign In</Text></Link>) :
-          (<Link to="/signout"><Text style={styles.text}>Sign Out</Text></Link>)}
+         { data !== undefined && me !== null ? 
+         (<><Link to="createreview"><Text style={styles.text}>Create a review</Text></Link>
+         <Link to="/signout"><Text style={styles.text}>Sign Out</Text></Link></>)
+         : (<Link to="/signin"><Text style={styles.text}>Sign In</Text></Link>) 
+         }
       </ScrollView>       
   </View>
 );
