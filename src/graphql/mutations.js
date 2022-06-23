@@ -20,6 +20,7 @@ mutation Mutation($user: CreateUserInput) {
     createUser(user: $user) {
       id
       username
+      createdAt
     }
   }
 `;
@@ -37,3 +38,4 @@ mutation CreateReview($review: CreateReviewInput) {
 }
 `
 ;
+

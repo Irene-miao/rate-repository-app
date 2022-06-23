@@ -28,6 +28,9 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 10,
   },
+  input: {
+    height: 100,
+  }
 });
 
 const initialValues = {
@@ -63,7 +66,7 @@ const onSubmit = async(values) => {
         <FormikTextInput name="ownerName" placeholder="Owner_name" />
         <FormikTextInput name="repositoryName" placeholder="Repository_name" />
         <FormikTextInput name="reviewRating" placeholder="Rating" />
-        <FormikTextInput name="text" placeholder="Text" multiline={true} />
+        <FormikTextInput style={styles.input} name="text" placeholder="Text" multiline={true} />
         <Pressable
           onPress={onSubmit}
           style={({ pressed }) => [
@@ -82,13 +85,13 @@ const onSubmit = async(values) => {
   const validationSchema = yup.object().shape({
     ownerName: yup
       .string()
-      .required("Owner name is required")
-      .min(3, "Owner name must be at least 3 characters long"),
+      .required("Repository owner name is required")
+      .min(3, "Repository owner name must be at least 3 characters long"),
     repositoryName: yup
       .string()
       .required("Repository Name is required"),
     //.matches(/(?=.*[0-9])/, "Password must contain a number."),
-    reviewRating: yup.number().required("Rating is required").min(0).max(100),
+    reviewRating: yup.number().required("Rating between 0 and 100").min(0).max(100),
     text: yup.string(),
   });
 

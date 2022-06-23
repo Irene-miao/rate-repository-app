@@ -43,7 +43,8 @@ return (
          { data !== undefined && me !== null ? 
          (<><Link to="createreview"><Text style={styles.text}>Create a review</Text></Link>
          <Link to="/signout"><Text style={styles.text}>Sign Out</Text></Link></>)
-         : (<Link to="/signin"><Text style={styles.text}>Sign In</Text></Link>) 
+         : (<><Link to="/signup"><Text style={styles.text}>Sign Up</Text></Link>
+         <Link to="/signin"><Text style={styles.text}>Sign In</Text></Link></>) 
          }
       </ScrollView>       
   </View>
