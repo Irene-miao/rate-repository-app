@@ -76,3 +76,33 @@ query Query($repositoryId: ID!) {
 }
  ${REPOSITORY_FIELDS}
 `;
+
+export const GET_REPOSITORIES_ORDERBY = gql`
+query ExampleQuery($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection) {
+  repositories(orderBy: $orderBy, orderDirection: $orderDirection) {
+    edges {
+      cursor
+      node {
+        ...repositoryFields
+        reviewCount
+        ratingAverage
+        reviews {
+          edges {
+            node {
+              text
+              user {
+                username
+              }
+              createdAt
+              rating
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+${REPOSITORY_FIELDS}
+
+`
