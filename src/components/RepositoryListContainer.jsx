@@ -4,7 +4,7 @@ import RepositoryItem from './RepositoryItem';
 import {useNavigate} from 'react-router-dom';
 import RepositoryListMenu from './RepositoryListMenu';
 import {useQuery} from '@apollo/client';
-import { GET_REPOSITORIES_ORDERBY } from '../graphql/queries';
+import { GET_REPOSITORIES_ORDERBY, SEARCH } from '../graphql/queries';
 
 
 const styles = StyleSheet.create({
@@ -17,28 +17,31 @@ const styles = StyleSheet.create({
 const ItemSeparator = () => <View style={styles.separator} />;
 
 
-const RepositoryListContainer = ({orderBy, orderDirection}) => {
+const RepositoryListContainer = ({variables}) => {
         const { data, error, loading } = useQuery(GET_REPOSITORIES_ORDERBY, {
             fetchPolicy: 'cache-and-network',
-            variables: {
-                orderBy: orderBy,
-                orderDirection: orderDirection
-            }
+            variables: variables,
         });
-
+        const {data: searchData, error: searchError, loading: searchLoading} = useQuery(SEARCH, {
+            fetchPolicy: 'cache-and-network', 
+            variables: variables,
+            })
  
 
 console.log(data);
+console.log(searchData);
 
-const repositoryNodes = data ?
-data?.repositories?.edges.map(edge => edge.node)
-: [];
+const searchRepositories =  searchData?.repositories.edges.map(edge => edge.node) ;
+const Repositories =  data?.repositories?.edges.map(edge => edge.node) ;
+
+const selectData = searchData ? searchRepositories : Repositories ;
+console.log(selectData);
+
 let navigate = useNavigate();
-console.log(repositoryNodes);
 
     return (
         <FlatList
-        data={repositoryNodes}
+        data={selectData}
         renderItem={({item}) => <Pressable onPress={() => {
             navigate(`/${item.id}`, {replace:true})
         }}> 

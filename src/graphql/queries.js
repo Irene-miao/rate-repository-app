@@ -105,4 +105,20 @@ query ExampleQuery($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirec
 
 ${REPOSITORY_FIELDS}
 
-`
+`;
+
+export const SEARCH = gql`
+query Query($searchKeyword: String) {
+  repositories(searchKeyword: $searchKeyword) {
+    edges {
+      node {
+        ...repositoryFields
+        reviewCount
+        ratingAverage
+      }
+    }
+  }
+}
+
+${REPOSITORY_FIELDS}
+`;
