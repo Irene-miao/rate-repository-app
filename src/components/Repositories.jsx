@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom';
 
 
  const Repositories = ({variables}) => {
-  console.log(variables);
+  console.log(variables.searchKeyword);
     const { data, error, loading } = useQuery(GET_REPOSITORIES_ORDERBY, {
         fetchPolicy: "cache-and-network",
         variables: variables ,
@@ -25,12 +25,17 @@ import {useNavigate} from 'react-router-dom';
       console.log(data);
       console.log(searchData);
 
-const searchRepositories = searchData ? searchRepositories?.repositories.edges.map(edge => edge.node) : [];
+const searchRepositories = searchData ? searchData?.repositories.edges.map(edge => edge.node) : [];
 const repositories = data ? data?.repositories.edges.map(edge => edge.node) : [];
 console.log(repositories);
 console.log(searchRepositories);
 
-    return <RepositoryListContainer navigate={useNavigate()} repositories={repositories} searchRepositories={searchRepositories} />;
+if (variables.orderBy && variables.orderDirection) {
+  return (<RepositoryListContainer navigate={useNavigate()} repositories={repositories}  />);
+} else if (variables.searchKeyword) {
+  return (<RepositoryListContainer navigate={useNavigate()} repositories={searchRepositories} />);
+};
+   
 };
 
 export default Repositories;

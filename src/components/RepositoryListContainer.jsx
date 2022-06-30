@@ -23,15 +23,13 @@ export class RepositoryListContainer extends React.Component {
 
 
   render() {
-   const { repositories, searchRepositories} = this.props;
-   console.log(repositories, searchRepositories);
-   const selectData = searchRepositories ? searchRepositories : repositories;
-   console.log(selectData);
+   const { repositories} = this.props;
+   console.log(repositories);
    const {navigate} = this.props;
 
     return (
       <FlatList
-        data={selectData}
+        data={repositories}
         renderItem={({ item }) => (
           <Pressable
             onPress={() => {
