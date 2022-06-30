@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import RepositoryListContainer from "./RepositoryListContainer";
+import Repositories from "./Repositories";
 import FormikTextInput from "./FormikTextInput";
 import { Formik } from "formik";
 import theme from "../theme";
@@ -11,7 +11,6 @@ import {useDebounce} from 'use-debounce';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
     padding: 15,
     display: "flex",
     flexDirection: "row",
@@ -28,13 +27,20 @@ const styles = StyleSheet.create({
     padding: 5,
     width: "10%",
     height: 40,
-    jtextAlign: "center"
+    textAlign: "center"
   },
   input: {
+    backgroundColor: "white",
     padding: 5,
     width: "75%",
     height: 40,
     fontSize: theme.fontSizes.subheading,
+  },
+  picker: {
+    height: 30,
+    marginLeft: 65,
+    marginRight: 65,
+    textAlign: "center",
   },
 });
 
@@ -44,8 +50,6 @@ const RepositoryListMenu = () => {
 const [searchKeyword] = useDebounce(keyword, 500);
 
 
-console.log(keyword);
-console.log(searchKeyword);
 
   const pickerRef = useRef();
 
@@ -57,28 +61,29 @@ console.log(searchKeyword);
     pickerRef.current.blur();
   }
 
-   let variables;
+   let variables = [];
   if (searchKeyword) {
     variables = searchKeyword;
-    return  <RepositoryListContainer variables={variables}   />
+    return  <Repositories variables={variables}   />
   }
   else if (title === "Latest repositories") {
-     variables = { orderBy:"CREATED_AT", orderDirection:"DESC"};
+    variables = { orderBy:"CREATED_AT", orderDirection:"DESC"};
     return (
-      <RepositoryListContainer  variables={variables} />
+      <Repositories  variables={variables} />
     );
   } else if (title === "Highest rated repositories") {
-    variables = { orderBy:"RATING_AVERAGE",  orderDirection:"DESC"};
+     variables = { orderBy:"RATING_AVERAGE",  orderDirection:"DESC"};
     return (
-      <RepositoryListContainer  variables={variables}/>
+      <Repositories  variables={variables}/>
     );
   } else if (title === "Lowest rated repositories") {
     variables = {orderBy:"RATING_AVERAGE", orderDirection:"ASC"};
     return (
-      <RepositoryListContainer  variables={variables} />
+      <Repositories  variables={variables} />
     );
   };
 
+  console.log(variables);
   const Search = ({ onSubmit }) => {
     return (
       <View style={styles.container}>
@@ -110,7 +115,9 @@ console.log(searchKeyword);
       >
         {({ handleSubmit }) => <Search onSubmit={handleSubmit} />}
       </Formik>
+      
       <Picker
+      style={styles.picker}
         ref={pickerRef}
         selectedValue={title}
         onValueChange={(itemValue, itemIndex) => setTitle(itemValue)}

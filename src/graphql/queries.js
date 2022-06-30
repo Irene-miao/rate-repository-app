@@ -115,6 +115,18 @@ query Query($searchKeyword: String) {
         ...repositoryFields
         reviewCount
         ratingAverage
+        reviews {
+          edges {
+            node {
+              text
+              user {
+                username
+              }
+              createdAt
+              rating
+            }
+          }
+        }
       }
     }
   }
@@ -122,3 +134,32 @@ query Query($searchKeyword: String) {
 
 ${REPOSITORY_FIELDS}
 `;
+
+
+export const GET_PAGINATED_REPO = gql`
+query Repositories($first: Int) {
+  repositories(first: $first) {
+    totalCount
+    edges {
+      node {
+        ...repositoryFields
+        reviewCount
+        ratingAverage
+      }
+      cursor
+    }
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+    }
+  }
+}
+
+${REPOSITORY_FIELDS}
+`;
+
+/*export const GET_REPOSITORY_REVIEW = gql`
+
+
+`;*/
