@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { REPOSITORY_FIELDS, USER_FIELDS} from './fragments';
+import { REPOSITORY_FIELDS, REVIEW_FIELDS, USER_FIELDS} from './fragments';
 
 
 
@@ -136,9 +136,9 @@ ${REPOSITORY_FIELDS}
 `;
 
 
-export const GET_PAGINATED_REPO = gql`
-query Repositories($first: Int) {
-  repositories(first: $first) {
+export const GET_REPOSITORIES_PAGINATED = gql`
+query Repositories($first: Int, $after: String) {
+  repositories(first: $first, after: $after) {
     totalCount
     edges {
       node {
@@ -159,7 +159,33 @@ query Repositories($first: Int) {
 ${REPOSITORY_FIELDS}
 `;
 
-/*export const GET_REPOSITORY_REVIEW = gql`
+export const GET_REPOSITORY_REVIEW = gql`
+query Query($repositoryId: ID!, $first: Int, $after: String) {
+  repository(id: $repositoryId) {
+    ...repositoryFields
+    reviewCount
+    ratingAverage
+    reviews(first: $first, after: $after) {
+      totalCount
+      edges {
+        node {
+          ...reviewFields
+          user {
+            id
+            username
+          }
+        }
+        cursor
+      }
+      pageInfo {
+        endCursor
+        startCursor
+        hasNextPage
+      }
+    }
+  }
+}
+${REPOSITORY_FIELDS}
+${REVIEW_FIELDS}
 
-
-`;*/
+`;

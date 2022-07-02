@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { GET_REVIEWS } from "../graphql/queries";
+import { GET_REPOSITORY_REVIEW } from "../graphql/queries";
 import RepositoryItem from "./RepositoryItem";
 import {
   Text,
@@ -125,9 +125,10 @@ const SingleRepository = () => {
   const { id } = useParams();
   console.log(id);
 
-  const { data, loading, error } = useQuery(GET_REVIEWS, {
+  const { data, loading, error, fetchMore } = useQuery(GET_REPOSITORY_REVIEW, {
     variables: {
       repositoryId: id,
+      first: 4,
     },
     fetchPolicy: 'cache-and-network',
   });
@@ -139,7 +140,28 @@ const SingleRepository = () => {
   if (error) {
     console.log(error);
   }
+  console.log(data);
 
+  const  handleFetchMore = () => {
+    const canFetchMore = !loading && data?.repository?.reviews?.pageInfo?.hasNextPage;
+  
+    if (!canFetchMore) {
+      return;
+    };
+  
+    fetchMore({
+      variables: {
+        after: data?.repository?.reviews.pageInfo.endCursor,
+ 
+      },
+    });
+  };
+
+ const onEndReach = () => {
+  fetchMore ? handleFetchMore(): null;
+  console.log("Reached the end")
+ };
+ 
   const repository = data ? data.repository : null;
   console.log(repository);
 
@@ -154,6 +176,8 @@ const SingleRepository = () => {
       renderItem={({ item }) => <ReviewItem review={item} />}
       keyExtractor={({ id }) => id}
       ListHeaderComponent={() => <RepositoryInfo repository={repository} />}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={1}
     />
   );
 };

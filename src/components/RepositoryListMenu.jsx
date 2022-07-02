@@ -6,6 +6,7 @@ import FormikTextInput from "./FormikTextInput";
 import { Formik } from "formik";
 import theme from "../theme";
 import {useDebounce} from 'use-debounce';
+import RepositoryList from "./RepositoryList";
 
 
 
@@ -67,9 +68,9 @@ const [searchKeyword] = useDebounce(keyword, 500);
     return  <Repositories variables={variables}   />
   }
   else if (title === "Latest repositories") {
-    variables = { orderBy:"CREATED_AT", orderDirection:"DESC"};
+    variables = { first: 4};
     return (
-      <Repositories  variables={variables} />
+      <RepositoryList  variables={variables} />
     );
   } else if (title === "Highest rated repositories") {
      variables = { orderBy:"RATING_AVERAGE",  orderDirection:"DESC"};
@@ -83,7 +84,7 @@ const [searchKeyword] = useDebounce(keyword, 500);
     );
   };
 
-  console.log(variables);
+
   const Search = ({ onSubmit }) => {
     return (
       <View style={styles.container}>

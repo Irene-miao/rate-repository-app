@@ -20,12 +20,23 @@ export class RepositoryListContainer extends React.Component {
     return <RepositoryListMenu />;
   };
 
+  
 
+   onEndReach = () => {
+    const { onEndReach} = this.props;
+     if (onEndReach) {
+      onEndReach();
+    console.log("Reached the end");
+    } else {
+      return null;
+    };
+   };
 
+   
   render() {
-   const { repositories} = this.props;
-   console.log(repositories);
-   const {navigate} = this.props;
+   const {repositories, navigate} = this.props;
+   console.log(repositories, navigate);
+
 
     return (
       <FlatList
@@ -43,6 +54,8 @@ export class RepositoryListContainer extends React.Component {
         ItemSeparatorComponent={ItemSeparator}
         ListHeaderComponent={this.renderHeader}
         ListHeaderComponentStyle={{ height: 120 }}
+        onEndReached={this.onEndReach}
+        onEndReachedThreshold={1}
       />
     );
   }

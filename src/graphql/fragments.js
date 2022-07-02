@@ -23,3 +23,13 @@ fragment userFields on User {
     createdAt
 }
 `;
+
+export const REVIEW_FIELDS = gql`
+fragment reviewFields on Review {
+    id
+          text
+          rating
+          createdAt
+          repositoryId
+}
+`;
