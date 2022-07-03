@@ -32,13 +32,33 @@ query Query {
 `;
 
 export const GET_ME = gql`
-query {
+query getCurrentUser($includeReviews: Boolean = false) {
   me {
-   ...userFields
+    ...userFields
+    reviewCount
+    reviews @include(if: $includeReviews) {
+      edges {
+        node {
+         ...reviewFields
+         repository {
+          ownerName
+          name
+        }
+        }
+        cursor
+      }
+      pageInfo {
+        endCursor
+        startCursor
+        hasNextPage
+      }
+    }
   }
 }
 
+
 ${USER_FIELDS}
+${REVIEW_FIELDS}
 `;
 
 
@@ -189,3 +209,4 @@ ${REPOSITORY_FIELDS}
 ${REVIEW_FIELDS}
 
 `;
+

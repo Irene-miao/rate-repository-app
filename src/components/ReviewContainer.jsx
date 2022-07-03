@@ -3,7 +3,7 @@ import Text from "./Text";
 import { StyleSheet, Pressable, View } from "react-native";
 import FormikTextInput from "./FormikTextInput";
 import theme from "../theme";
-import { Formik, setNestedObjectValues } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
 import { useMutation} from '@apollo/client';
 import {CREATE_REVIEW} from '../graphql/mutations';

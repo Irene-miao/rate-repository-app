@@ -10,7 +10,7 @@ import theme from '../theme';
 import SingleRepository from './SingleRepository';
 import ReviewContainer from './ReviewContainer';
 import SignUpContainer from './SignUpContainer';
-
+import ReviewList from './ReviewList';
 
 
 const styles = StyleSheet.create({
@@ -36,6 +36,7 @@ const Main = () => {
             <Route path="/" element={<RepositoryListContainer />} exact />
             <Route path="/:id" element={<SingleRepository />} />
             <Route path="createreview" element={<ReviewContainer />} />
+            <Route path="reviews" element={<ReviewList />} />
             <Route path="signin" element={<SignIn />}  />
             <Route path="signout" element={<SignOut />}  />
             <Route path="signup" element={<SignUpContainer />} />

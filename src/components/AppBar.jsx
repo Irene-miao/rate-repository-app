@@ -42,6 +42,7 @@ return (
       <Link to="/"><Text style={styles.text}>Repositories</Text></Link>
          { data !== undefined && me !== null ? 
          (<><Link to="createreview"><Text style={styles.text}>Create a review</Text></Link>
+         <Link to="reviews"><Text style={styles.text}>My reviews</Text></Link>
          <Link to="/signout"><Text style={styles.text}>Sign Out</Text></Link></>)
          : (<><Link to="/signup"><Text style={styles.text}>Sign Up</Text></Link>
          <Link to="/signin"><Text style={styles.text}>Sign In</Text></Link></>) 
