@@ -26,8 +26,9 @@ fragment userFields on User {
 
 export const REVIEW_FIELDS = gql`
 fragment reviewFields on Review {
-    id
+    
           text
+          id
           rating
           createdAt
           repositoryId

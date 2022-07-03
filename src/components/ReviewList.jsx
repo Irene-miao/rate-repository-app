@@ -5,7 +5,7 @@ import {FlatList} from 'react-native';
 
 
 const ReviewList =() => {
-    const {data, loading, error, fetchMore} = useQuery(GET_ME, {
+    const {data, loading, error, fetchMore, refetch} = useQuery(GET_ME, {
         fetchPolicy: "cache-and_network",
         variables: {
 includeReviews: true
@@ -40,7 +40,7 @@ console.log(reviews);
     return (
         <FlatList
           data={reviews}
-          renderItem={({ item }) => <ReviewItem review={item} />}
+          renderItem={({ item }) => <ReviewItem review={item} refetch={refetch} />}
           keyExtractor={({ id }) => id}
           onEndReached={onEndReach}
           onEndReachedThreshold={1}
