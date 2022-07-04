@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import Repositories from "./Repositories";
 import FormikTextInput from "./FormikTextInput";
 import { Formik } from "formik";
 import theme from "../theme";
@@ -65,7 +64,7 @@ const [searchKeyword] = useDebounce(keyword, 500);
    let variables = [];
   if (searchKeyword) {
     variables = searchKeyword;
-    return  <Repositories variables={variables}   />
+    return  <RepositoryList variables={variables}   />
   }
   else if (title === "Latest repositories") {
     variables = { first: 4};
@@ -75,12 +74,12 @@ const [searchKeyword] = useDebounce(keyword, 500);
   } else if (title === "Highest rated repositories") {
      variables = { orderBy:"RATING_AVERAGE",  orderDirection:"DESC"};
     return (
-      <Repositories  variables={variables}/>
+      <RepositoryList  variables={variables}/>
     );
   } else if (title === "Lowest rated repositories") {
     variables = {orderBy:"RATING_AVERAGE", orderDirection:"ASC"};
     return (
-      <Repositories  variables={variables} />
+      <RepositoryList  variables={variables} />
     );
   };
 

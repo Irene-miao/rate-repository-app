@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSizes.subheading,
   }, 
   paragraph: {
-    marginLeft: 60,
+    justifyContent: "center",
+    width: "60%"
   },
   buttonText: {
     textAlign: "center",
@@ -90,8 +91,6 @@ const ReviewItem = ({ review, refetch }) => {
 
     
   const handleDelete = () => {
-
-
     Alert.alert(
       "Delete review",
       "Are you sure you want to delete this review?",
@@ -125,7 +124,7 @@ console.log(result);
               <Text style={styles.roundButtonText}>{review.rating}</Text>
             </TouchableOpacity>
             <View style={styles.column}>
-            <Text style={styles.header}>{review?.repository?.ownerName} / {review?.repository?.name}</Text>
+           {review.repository ? <Text style={styles.header}> {review?.repository?.ownerName} / {review?.repository?.name}</Text> : <Text>{review.user?.username}</Text>}
             <Text style={styles.subheading}>{newDate}</Text>
             </View>
           </View>

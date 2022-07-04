@@ -1,7 +1,11 @@
-import { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { GET_REPOSITORIES_PAGINATED } from "../graphql/queries";
 
-const useRepositories = () => {
-  const [repositories, setRepositories] = useState();
+//import { useState, useEffect } from "react";
+
+
+export const useRepositories = ({variables}) => {
+  /*const [repositories, setRepositories] = useState();
   const [loading, setLoading] = useState();
 
   const fetchRepositories = async () => {
@@ -22,6 +26,37 @@ const useRepositories = () => {
   }, []);
 
   return { repositories, loading, refetch: fetchRepositories };
+};*/
+
+console.log(variables);
+const { data, error, loading, fetchMore, ...result} = useQuery(GET_REPOSITORIES_PAGINATED, {
+    fetchPolicy: "cache-and-network",
+    variables: variables,
+  });
+
+  const  handleFetchMore = () => {
+    const canFetchMore = !loading && data?.repositories?.pageInfo?.hasNextPage;
+  
+    if (!canFetchMore) {
+      return;
+    };
+  
+    fetchMore({
+      variables: {
+        after: data?.repositories.pageInfo.endCursor,
+        ...variables,
+      },
+    });
+  };
+
+const paginatedRepositories = data ? data?.repositories.edges.map(edge => edge.node) : [];
+
+  return {
+repositories: paginatedRepositories,
+fetchMore: handleFetchMore,
+loading,
+...result,
+  }
 };
 
-export default useRepositories;
+

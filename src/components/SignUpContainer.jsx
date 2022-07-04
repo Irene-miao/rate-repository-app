@@ -8,7 +8,7 @@ import * as yup from "yup";
 import { useMutation} from '@apollo/client';
 import {CREATE_USER} from '../graphql/mutations';
 import {useNavigate} from 'react-router-dom';
-import useSignIn from './useSignIn';
+import useSignIn from '../hooks/useSignIn';
 
 
 const styles = StyleSheet.create({
