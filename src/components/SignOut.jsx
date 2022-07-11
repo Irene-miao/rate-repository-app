@@ -26,24 +26,21 @@ const SignOut =  () => {
   const authStorage = useAuthStorage();
   const { data} = useQuery(GET_ME, {
     fetchPolicy: 'cache-and_network',
-  });
+   });
+     data ? authStorage.removeAccessToken() :null;
+    data ? client.resetStore() : null;
+  
 
 
 
 
 
-useEffect(async() => {
-await authStorage.removeAccessToken();
-client.resetStore();
 
-}, []);
     
 console.log(data);
   
   
-  
-
-  return (
+    return (
     <View style={styles.container}>
       <Text>You are signed out. Click Sign In tab to sign in</Text>
     </View>

@@ -1,3 +1,4 @@
+import React from 'react';
 import RepositoryListContainer from '../components/RepositoryListContainer';
 import { render} from '@testing-library/react-native';
 
@@ -48,7 +49,7 @@ describe('RepositoryList', () => {
                 ],
             };
 
-const { debug, getByText, getAllByTestId} = render(<RepositoryListContainer repositories={repositories} />);         
+const { debug,  getAllByTestId} = render(<RepositoryListContainer repositories={repositories} />);         
 
 const repositoryItems = getAllByTestId('repositoryItem');
 const [firstRepositoryItem, secondRepositoryItem] = repositoryItems;

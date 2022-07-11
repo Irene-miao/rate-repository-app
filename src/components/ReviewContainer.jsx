@@ -52,7 +52,7 @@ const onSubmit = async(values) => {
   console.log(rating);
   const {data} = await mutate({variables: {review: {ownerName, repositoryName, rating, text}}})
   console.log(data);
-  navigate(`/${data?.createReview?.repositoryId}`, {replace:true});
+   navigate(`/${data?.createReview?.repositoryId}`, {replace:true});
 };
 
 
@@ -63,10 +63,10 @@ const onSubmit = async(values) => {
   const ReviewForm = ({ onSubmit }) => {
     return (
       <View style={styles.container}>
-        <FormikTextInput name="ownerName" placeholder="Owner_name" />
-        <FormikTextInput name="repositoryName" placeholder="Repository_name" />
-        <FormikTextInput name="reviewRating" placeholder="Rating" />
-        <FormikTextInput style={styles.input} name="text" placeholder="Text" multiline={true} />
+        <FormikTextInput name="ownerName" placeholder="Owner name" />
+        <FormikTextInput name="repositoryName" placeholder="Repository name" />
+        <FormikTextInput name="reviewRating" placeholder="Rating between 0 and 100" />
+        <FormikTextInput style={styles.input} name="text" placeholder="Text" multiline />
         <Pressable
           onPress={onSubmit}
           style={({ pressed }) => [

@@ -1,5 +1,5 @@
+import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
-import SignIn from '../components/SignIn';
 import SignInContainer from '../components/SignInContainer';
 
 

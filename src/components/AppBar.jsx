@@ -2,10 +2,10 @@ import React  from "react";
 import { View,  StyleSheet, ScrollView } from "react-native";
 import Constants from "expo-constants";
 import {Link} from 'react-router-native';
-import theme from '../theme';
-import Text from './Text';
 import {GET_ME} from '../graphql/queries';
 import { useQuery } from '@apollo/client';
+import theme from '../theme';
+import Text from './Text';
 
 
 const styles = StyleSheet.create({

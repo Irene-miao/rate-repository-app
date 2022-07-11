@@ -4,17 +4,24 @@ import { REPOSITORY_FIELDS, REVIEW_FIELDS, USER_FIELDS} from './fragments';
 
 
 export const GET_REPOSITORIES = gql`
-query Query {
-    repositories {
-      edges {
-        node {
-         ...repositoryFields
-          reviewCount
-          ratingAverage
-        }
+query Query($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection, $first: Int, $after: String, $searchKeyword: String) {
+  repositories(orderBy: $orderBy, orderDirection: $orderDirection, first: $first, after: $after, searchKeyword: $searchKeyword) {
+    totalCount
+    edges {
+      node {
+       ...repositoryFields
+       ratingAverage
+        reviewCount
       }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      startCursor
+      endCursor
     }
   }
+}
 
   ${REPOSITORY_FIELDS}
 `;
