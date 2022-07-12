@@ -84,7 +84,7 @@ const ReviewItem = ({ review, refetch }) => {
     const newDate = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`;
     let navigate = useNavigate();
   
-
+console.log(review);
 
     const handleView = () => {
       navigate( `/${review?.repositoryId}`,  {replace:true });
@@ -112,11 +112,9 @@ const ReviewItem = ({ review, refetch }) => {
        ],
        {cancelable: false},
       );
-      return true;
-
       
 console.log(result);
-  }
+  };
 
       return (
         <View style={styles.container}>
@@ -133,7 +131,7 @@ console.log(result);
             <Text style={styles.paragraph}>{review.text}</Text>
           </View>
           <View style={styles.row}>
-          <Pressable
+          {review.repository ? <Pressable
               onPress={handleView}
               style={({ pressed }) => [
                 {
@@ -143,7 +141,7 @@ console.log(result);
               ]}
             >
               <Text style={styles.buttonText}>View repository</Text>
-            </Pressable>
+            </Pressable>: null }
             <Pressable
               onPress={handleDelete}
               style={({ pressed }) => [

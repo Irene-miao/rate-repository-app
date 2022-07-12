@@ -1,23 +1,22 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useQuery} from "@apollo/client";
 import { GET_REPOSITORY_REVIEW } from "../graphql/queries";
-import ReviewItem from './ReviewItem';
 import {
   FlatList
 } from "react-native";
 import RepositoryInfo from './RepositoryInfo';
-
+import ReviewItem from './ReviewItem';
 
 
 const SingleRepository = () => {
   const { id } = useParams();
   console.log(id);
 
-  const { data, loading, error, fetchMore } = useQuery(GET_REPOSITORY_REVIEW, {
+  const { data, loading, error, fetchMore, refetch } = useQuery(GET_REPOSITORY_REVIEW, {
     variables: {
       repositoryId: id,
-      first: 4,
+      first: 3,
     },
     fetchPolicy: 'cache-and-network',
   });
@@ -30,6 +29,7 @@ const SingleRepository = () => {
     console.log(error);
   }
   console.log(data);
+
 
   const  handleFetchMore = () => {
     const canFetchMore = !loading && data?.repository?.reviews?.pageInfo?.hasNextPage;
@@ -45,6 +45,7 @@ const SingleRepository = () => {
       },
     });
   };
+
 
  const onEndReach = () => {
   fetchMore ? handleFetchMore(): null;
@@ -62,7 +63,7 @@ const SingleRepository = () => {
   return (
     <FlatList
       data={reviews}
-      renderItem={({ item }) => <ReviewItem review={item} />}
+      renderItem={({ item }) => <ReviewItem review={item}  refetch={refetch}/>}
       keyExtractor={({ id }) => id}
       ListHeaderComponent={() => <RepositoryInfo repository={repository} />}
       onEndReached={onEndReach}

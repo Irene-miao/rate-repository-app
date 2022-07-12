@@ -63,8 +63,8 @@ const onSubmit = async(values) => {
     return (
       <View style={styles.container}>
         <FormikTextInput name="username" placeholder="Username" />
-        <FormikTextInput name="password" placeholder="Password" />
-        <FormikTextInput name="passwordConfirmation" placeholder="Password Confirmation" />
+        <FormikTextInput name="password" placeholder="Password" secureTextEntry={true}/>
+        <FormikTextInput name="passwordConfirmation" placeholder="Password Confirmation" secureTextEntry={true}/>
 
         <Pressable
           onPress={onSubmit}

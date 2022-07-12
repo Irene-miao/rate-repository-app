@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 5,
-    width: "25%",
+    width: "45%",
     borderRadius: theme.roundness,
     justifyContent: "center",
     alignItems: "center",

@@ -36,6 +36,7 @@ includeReviews: true
     const reviews = data
     ? data?.me?.reviews?.edges.map((edge) => edge.node)
     : null;
+    
 console.log(reviews); 
 
     return (
